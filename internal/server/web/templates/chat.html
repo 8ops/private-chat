@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Chat</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><span class="dot"></span> Private Chat</div>
+      <div class="me">
+        <div class="name" id="meName"></div>
+        <div class="role" id="meRole"></div>
+      </div>
+      <div class="online">在线：<span id="onlineCount">0</span> 人</div>
+      <div class="user-list" id="userList"></div>
+    </aside>
+    <main class="main">
+      <div class="chat-header">
+        <span>公共聊天室 · general</span>
+        <span class="conn-status" id="connStatus">连接中…</span>
+      </div>
+      <div class="messages" id="messages"></div>
+
+      <!-- 表情/表情包面板 -->
+      <div class="panel" id="panel">
+        <div class="tabs" id="panelTabs"></div>
+        <div class="body" id="panelBody"></div>
+      </div>
+
+      <div class="composer">
+        <div class="row">
+          <button class="tool-btn" id="emojiBtn" title="表情">😊</button>
+          <button class="tool-btn" id="stickerBtn" title="表情包">🙂</button>
+          <button class="tool-btn" id="imgBtn" title="图片">🖼️</button>
+          <button class="tool-btn" id="fileBtn" title="文件">📎</button>
+          <textarea id="input" placeholder="输入消息，Enter 发送，Shift+Enter 换行" rows="1"></textarea>
+          <button class="send-btn" id="sendBtn">发送</button>
+        </div>
+        <input type="file" id="imgInput" accept="image/*" hidden>
+        <input type="file" id="fileInput" hidden>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    window.__USER__ = {
+      id: "{{.user_id}}",
+      username: "{{.username}}",
+      nickname: "{{.nickname}}",
+      role: "{{.role}}"
+    };
+  </script>
+  <script src="/static/js/emoji.js"></script>
+  <script src="/static/js/stickers.js"></script>
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

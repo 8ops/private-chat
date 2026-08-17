@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 - Private Chat</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1>管理后台 <a href="/chat" style="font-size:13px;font-weight:400;">← 返回聊天</a></h1>
+
+    <div class="admin-stats" id="stats"></div>
+
+    <div class="create-form">
+      <div class="field"><label>账号</label><input id="cU" placeholder="username"></div>
+      <div class="field"><label>密码</label><input id="cP" type="text" placeholder="≥6 位"></div>
+      <div class="field"><label>昵称</label><input id="cN" placeholder="可选"></div>
+      <div class="field"><label>启用</label>
+        <select id="cE" style="padding:9px;border:1px solid var(--border);border-radius:8px;">
+          <option value="true">是</option><option value="false">否</option>
+        </select>
+      </div>
+      <button class="btn-primary" style="width:auto;padding:10px 18px;" id="createBtn">创建用户</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>账号</th><th>昵称</th><th>角色</th><th>状态</th><th>创建时间</th><th>最近登录</th><th>操作</th></tr>
+      </thead>
+      <tbody id="userTable"></tbody>
+    </table>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# Private Chat 服务配置样例
+# 说明：
+#  - 命令行优先加载 -config 指定的文件（默认 configs/config.yaml）
+#  - 环境变量可覆盖下列任意项（生产部署推荐用环境变量，避免明文落盘）
+#  - ADMIN_USERNAME / ADMIN_PASSWORD 仅来自环境变量，不写在这里
+
+server:
+  host: "0.0.0.0"
+  port: 8080
+
+database:
+  path: "./data/chat.db"        # SQLite 文件路径（目录会自动创建）
+
+storage:
+  upload_dir: "./data/uploads"  # 上传文件根目录（按 年/月/日 分子目录）
+  max_image_size: 10485760     # 图片上限 10MB（字节）
+  max_file_size: 52428800      # 普通文件上限 50MB（字节）
+
+chat:
+  message_retention_hours: 4   # 消息保留时长（默认 4 小时自动清理）
+
+session:
+  expiration_hours: 24         # 登录会话有效期（小时）
+
+security:
+  cookie_secure: false         # 经 HTTPS 反向代理后改为 true
+
+log:
+  level: "info"                # debug | info | warn | error
+  format: "json"               # json | text
