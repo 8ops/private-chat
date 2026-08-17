@@ -36,9 +36,11 @@ func HashPassword(password string) (string, error) {
 }
 
 // VerifyPassword 校验密码与哈希是否匹配。
+// HashPassword 生成的格式为 argon2id$v=19$m=…,t=…,p=…$<salt>$<hash>，
+// 按 "$" 拆分为 5 段：["argon2id","v=19","m=…,t=…,p=…",<salt>,<hash>]。
 func VerifyPassword(password, encoded string) bool {
 	parts := strings.Split(encoded, "$")
-	if len(parts) != 6 {
+	if len(parts) != 5 {
 		return false
 	}
 	if parts[0] != "argon2id" {
@@ -48,11 +50,11 @@ func VerifyPassword(password, encoded string) bool {
 	if _, err := fmt.Sscanf(parts[2], "m=%d,t=%d,p=%d", &m, &t, &p); err != nil {
 		return false
 	}
-	salt, err := base64.RawStdEncoding.DecodeString(parts[4])
+	salt, err := base64.RawStdEncoding.DecodeString(parts[3])
 	if err != nil {
 		return false
 	}
-	want, err := base64.RawStdEncoding.DecodeString(parts[5])
+	want, err := base64.RawStdEncoding.DecodeString(parts[4])
 	if err != nil {
 		return false
 	}
